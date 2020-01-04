@@ -2,10 +2,10 @@
 
 # Docker Bitnami Apache
 
-Customization of the [Bitnami Apache Docker image](https://github.com/bitnami/bitnami-docker-apache) with support of:
+Customization of the [Bitnami Apache Docker image](https://github.com/bitnami/bitnami-docker-apache) with integration of:
 
 - [H5BP Apache server configs](https://github.com/h5bp/server-configs-apache)
-- [mod_pagespeed](https://www.modpagespeed.com)
+- [mod_pagespeed](https://www.modpagespeed.com) *(TODO)*
 
 ### Contributing
 

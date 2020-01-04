@@ -1,3 +1,14 @@
+## [Unreleased](https://github.com/frugan-it/docker-bitnami-apache/compare/v1.0.0...HEAD)
+
+### Commits
+
+- Updated README [`6fb58eb`](https://github.com/frugan-it/docker-bitnami-apache/commit/6fb58eb3df9d78d2ef48e5921f5e3be7ff41858a)
+
+## v1.0.0 - 2020-01-04
+
+### Commits
+
+- Initial commit [`0c9cce6`](https://github.com/frugan-it/docker-bitnami-apache/commit/0c9cce6c73e071796f873c7f0f74be3e2361abfc)
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).

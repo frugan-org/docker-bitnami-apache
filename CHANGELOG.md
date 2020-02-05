@@ -2,7 +2,8 @@
 
 ### Commits
 
-- Updated README [`6fb58eb`](https://github.com/frugan-it/docker-bitnami-apache/commit/6fb58eb3df9d78d2ef48e5921f5e3be7ff41858a)
+- Updated README [`b5df917`](https://github.com/frugan-it/docker-bitnami-apache/commit/b5df9172c3b46ca7dd768702b2cd6c9f179be223)
+- Updated ARG and ENV variables [`f4813d9`](https://github.com/frugan-it/docker-bitnami-apache/commit/f4813d9b2a7cd1ee091a30c27f2e58e6b66cc6a8)
 
 ## v1.0.0 - 2020-01-04
 

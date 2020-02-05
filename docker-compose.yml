@@ -7,7 +7,6 @@ services:
     build:
       context: .
       args:
-        ENV: ${ENV}
         APACHE_TAG: ${APACHE_TAG}
     restart: always
     networks:

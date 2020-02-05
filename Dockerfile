@@ -1,6 +1,10 @@
 ARG APACHE_TAG
+ARG ENV
 
-FROM bitnami/apache:${APACHE_TAG:-latest}
+ENV APACHE_TAG=${APACHE_TAG:-latest}
+    ENV=${ENV:-develop}
+
+FROM bitnami/apache:${APACHE_TAG}
 
 #https://forums.docker.com/t/unable-to-find-user-root-no-matching-entries-in-passwd-file/26545/2
 # Required to perform privileged actions
@@ -10,8 +14,6 @@ RUN install_packages \
         vim \
         wget \
     ;
-
-ARG ENV
 
 #https://github.com/docker-library/php/issues/389
 #https://askubuntu.com/a/147065/543855

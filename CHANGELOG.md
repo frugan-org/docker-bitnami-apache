@@ -2,6 +2,8 @@
 
 ### Commits
 
+- Updated CHANGELOG [`452050e`](https://github.com/frugan-it/docker-bitnami-apache/commit/452050ee15e6d23528a7441d48df32b072bed0d7)
+- Updated Dockerfile [`543a20f`](https://github.com/frugan-it/docker-bitnami-apache/commit/543a20f1c57304413ffebe772bcb627706dc1efd)
 - Merge tag 'v1.1.0' into develop [`33a7c06`](https://github.com/frugan-it/docker-bitnami-apache/commit/33a7c06921291aceb5486327e30049990c09b98d)
 
 ## [v1.1.0](https://github.com/frugan-it/docker-bitnami-apache/compare/v1.0.0...v1.1.0) - 2020-02-05

@@ -1,9 +1,15 @@
-## [Unreleased](https://github.com/frugan-it/docker-bitnami-apache/compare/v1.0.0...HEAD)
+## [Unreleased](https://github.com/frugan-it/docker-bitnami-apache/compare/v1.1.0...HEAD)
+
+### Commits
+
+- Merge tag 'v1.1.0' into develop [`33a7c06`](https://github.com/frugan-it/docker-bitnami-apache/commit/33a7c06921291aceb5486327e30049990c09b98d)
+
+## [v1.1.0](https://github.com/frugan-it/docker-bitnami-apache/compare/v1.0.0...v1.1.0) - 2020-02-05
 
 ### Commits
 
 - Updated README [`b5df917`](https://github.com/frugan-it/docker-bitnami-apache/commit/b5df9172c3b46ca7dd768702b2cd6c9f179be223)
-- Updated ARG and ENV variables [`f4813d9`](https://github.com/frugan-it/docker-bitnami-apache/commit/f4813d9b2a7cd1ee091a30c27f2e58e6b66cc6a8)
+- Updated ARG and ENV variables [`92478b8`](https://github.com/frugan-it/docker-bitnami-apache/commit/92478b82d06874261e8873c67790f3ab5f40450d)
 
 ## v1.0.0 - 2020-01-04
 

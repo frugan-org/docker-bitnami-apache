@@ -51,13 +51,13 @@ RUN echo '<IfModule pagespeed_module>\n\
     <Location /pagespeed>\n\
         SetHandler pagespeed_admin\n\
         <IfModule mod_rewrite.c>\n\
-                RewriteEngine Off\n\
+            RewriteEngine Off\n\
         </IfModule>\n\
         <IfModule mod_authn_file.c>\n\
             AuthName "PageSpeed"\n\
             AuthType Basic\n\
-            AuthUserFile /app/private/conf/.htpasswd\n\
-            AuthGroupFile /app/private/conf/.htgroup\n\
+            AuthUserFile /app/conf/.htpasswd\n\
+            AuthGroupFile /app/conf/.htgroup\n\
         </IfModule>\n\
         <Limit GET POST>\n\
             require valid-user\n\

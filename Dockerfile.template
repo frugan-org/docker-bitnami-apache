@@ -41,18 +41,25 @@ RUN sed -i \
     \
     /opt/bitnami/apache/conf/httpd.conf
 
+RUN echo 'ModPagespeedMemcachedServers memcached:11211\n\
+ModPagespeedCreateSharedMemoryMetadataCache "/opt/bitnami/apache/var/cache/mod_pagespeed/" 51200\n\
+ModPagespeedEnableFilters remove_comments,collapse_whitespace,insert_dns_prefetch,insert_ga,inline_google_font_css,move_css_to_head\n
+ModPagespeedEnableCachePurge on\n\
+#ModPagespeedUsePerVhostStatistics on\n'\
+    >> /opt/bitnami/apache/conf/pagespeed.conf
+
 
 #### h5bp
 
 RUN wget -O /opt/bitnami/apache/conf/extra/h5bp.conf https://raw.githubusercontent.com/h5bp/server-configs-apache/master/dist/.htaccess; \
     #https://unix.stackexchange.com/a/77278/81288
     #https://stackoverflow.com/a/54177138/3929620
-    echo '\n<IfModule mod_rewrite.c>\n\
+    echo '<IfModule mod_rewrite.c>\n\
     RewriteEngine On\n\
     RewriteCond %{REQUEST_FILENAME} !-f\n\
     RewriteRule ^(.+)\.(\w+)\.(avifs?|bmp|css|cur|gif|ico|jpe?g|m?js|a?png|svgz?|webp|webmanifest)$ $1.$3 [L]\n\
 </IfModule>\n'\
-    >> /opt/bitnami/apache/conf/extra/h5bp.conf
+    >> /opt/bitnami/apache/conf/extra/h5bp.conf;
 
 
 # Revert to the original non-root user

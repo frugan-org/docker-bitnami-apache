@@ -45,7 +45,7 @@ RUN echo 'ModPagespeedMemcachedServers memcached:11211\n\
 ModPagespeedCreateSharedMemoryMetadataCache "/opt/bitnami/apache/var/cache/mod_pagespeed/" 51200\n\
 ModPagespeedEnableFilters remove_comments,collapse_whitespace,insert_dns_prefetch,insert_ga,inline_google_font_css,move_css_to_head\n\
 ModPagespeedEnableCachePurge on\n\
-\#ModPagespeedUsePerVhostStatistics on\n'\
+ModPagespeedUsePerVhostStatistics on\n'\
     >> /opt/bitnami/apache/conf/pagespeed.conf
 
 

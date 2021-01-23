@@ -47,6 +47,22 @@ RUN echo '<IfModule pagespeed_module>\n\
     ModPagespeedEnableFilters remove_comments,collapse_whitespace,insert_dns_prefetch,insert_ga,inline_google_font_css,move_css_to_head\n\
     ModPagespeedEnableCachePurge on\n\
     ModPagespeedUsePerVhostStatistics on\n\
+    \n\
+    <Location /pagespeed>\n\
+        SetHandler pagespeed_admin\n\
+        <IfModule mod_rewrite.c>\n\
+                RewriteEngine Off\n\
+        </IfModule>\n\
+        <IfModule mod_authn_file.c>\n\
+            AuthName "PageSpeed"\n\
+            AuthType Basic\n\
+            AuthUserFile /app/private/conf/.htpasswd\n\
+            AuthGroupFile /app/private/conf/.htgroup\n\
+        </IfModule>\n\
+        <Limit GET POST>\n\
+            require valid-user\n\
+        </Limit>\n\
+    </Location>\n\
 </IfModule>\n'\
     >> /opt/bitnami/apache/conf/pagespeed.conf
 

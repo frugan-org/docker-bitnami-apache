@@ -26,6 +26,9 @@ RUN sed -i \
     -e 's/^#\(LoadModule .*http2_module\)/\1/' \
     -e 's/^#\(LoadModule .*rewrite_module\)/\1/' \
     \
+    #https://github.com/bitnami/bitnami-docker-apache/issues/101#issuecomment-638688639
+    -e 's/^#\(Include .*pagespeed\)/\1/' \
+    \
     # W3TC -> Page Cache and Browser Cache
     -e 's/^#\(LoadModule .*deflate_module\)/\1/' \
     -e 's/^#\(LoadModule .*env_module\)/\1/' \
@@ -41,62 +44,16 @@ RUN sed -i \
 
 #### h5bp
 
-RUN wget -O /opt/bitnami/apache/conf/extra/h5bp.conf https://raw.githubusercontent.com/h5bp/server-configs-apache/master/dist/.htaccess
+RUN wget -O /opt/bitnami/apache/conf/extra/h5bp.conf https://raw.githubusercontent.com/h5bp/server-configs-apache/master/dist/.htaccess; \
+    #https://unix.stackexchange.com/a/77278/81288
+    #https://stackoverflow.com/a/54177138/3929620
+    echo '\n<IfModule mod_rewrite.c>\n\
+    RewriteEngine On\n\
+    RewriteCond %{REQUEST_FILENAME} !-f\n\
+    RewriteRule ^(.+)\.(\w+)\.(avifs?|bmp|css|cur|gif|ico|jpe?g|m?js|a?png|svgz?|webp|webmanifest)$ $1.$3 [L]\n\
+</IfModule>\n'\
+    >> /opt/bitnami/apache/conf/extra/h5bp.conf
 
-
-#### mod_pagespeed
-#https://github.com/bitnami/bitnami-docker-wordpress/issues/145#issuecomment-434983025
-#https://docs.bitnami.com/bch/apps/wordpress/administration/use-pagespeed/
-#https://stackoverflow.com/a/56431245
-
-#RUN install_packages \
-#    g++ \
-#    python \
-#    subversion \
-#    gperf \
-#    make \
-#    devscripts \
-#    fakeroot \
-#    git \
-#    curl \
-#    zlib1g-dev && \
-#    mkdir -p ~/bin && \
-#    cd ~/bin && \
-#    git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git && \
-#    export PATH=$PATH:~/bin/depot_tools && \
-#    cd ~ && \
-#    git clone -b latest-stable --recursive https://github.com/apache/incubator-pagespeed-mod.git && \
-#    cd ~/mod_pagespeed && \
-#    python build/gyp_chromium --depth=. && \
-#    make BUILDTYPE=Release mod_pagespeed_test pagespeed_automatic_test && \
-#    export SSL_CERT_DIR=/etc/pki/tls/certs && \
-#    export SSL_CERT_FILE=/etc/pki/tls/cert.pem && \
-#    ./out/Release/mod_pagespeed_test && \
-#    ./out/Release/pagespeed_automatic_test && \
-#    cd ~/mod_pagespeed/src && \
-#    make AR.host=`pwd`/build/wrappers/ar.sh AR.target=`pwd`/build/wrappers/ar.sh BUILDTYPE=Release && \
-#    cd install && \
-#    APXS_BIN=/opt/bitnami/apache/bin/apxs ./install_apxs.sh
-#
-#USER root
-#ENV ACCEPT_EULA=Y
-#RUN apt-get update \
-#  && apt-get -y install \
-#    apache2 \
-#  && curl -o /opt/mod-pagespeed-stable_current_amd64.deb \
-#  https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb \
-#  && dpkg -i /opt/mod-pagespeed-stable_current_amd64.deb
-#
-#FROM bitnami/apache:latest
-#USER root
-#RUN groupadd -g 48 apache
-#RUN useradd -r -u 48 -g apache apache
-#
-#COPY --from=builder \
-#  /usr/lib/apache2/modules/mod_pagespeed*.so \
-#  /opt/bitnami/apache/modules/
-#
-#COPY conf /opt/bitnami/apache/conf
 
 # Revert to the original non-root user
 USER 1001

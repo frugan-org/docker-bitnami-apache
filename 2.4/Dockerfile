@@ -24,10 +24,14 @@ RUN install_packages \
 #https://docs.bitnami.com/bch/apps/wordpress/configuration/enable-modules/
 RUN sed -i \
     -e 's/^#\(LoadModule .*http2_module\)/\1/' \
+    -e 's/^#\(LoadModule .*remoteip_module\)/\1/' \
     -e 's/^#\(LoadModule .*rewrite_module\)/\1/' \
+    -e 's/^#\(LoadModule .*security3_module\)/\1/' \
+    -e 's/^#\(LoadModule .*unique_id_module\)/\1/' \
     \
-    #https://github.com/bitnami/bitnami-docker-apache/issues/101#issuecomment-638688639
-    -e 's/^#\(Include .*pagespeed\)/\1/' \
+    #TODO - https://docs.bitnami.com/bch/apps/wordpress/configuration/enable-modules/
+    #- LDAP
+    #- Mod_evasive
     \
     # W3TC -> Page Cache and Browser Cache
     -e 's/^#\(LoadModule .*deflate_module\)/\1/' \
@@ -41,9 +45,62 @@ RUN sed -i \
     \
     /opt/bitnami/apache/conf/httpd.conf
 
-RUN echo '<IfModule pagespeed_module>\n\
+
+#### remoteip
+#https://support.cloudflare.com/hc/en-us/articles/360029696071-Restoring-original-visitor-IPs-Option-2-Installing-mod-remoteip-with-Apache
+
+RUN echo '<IfModule remoteip_module>\n\
+    RemoteIPHeader CF-Connecting-IP\n\
+    \n\
+    RemoteIPTrustedProxy 173.245.48.0/20\n\
+    RemoteIPTrustedProxy 103.21.244.0/22\n\
+    RemoteIPTrustedProxy 103.22.200.0/22\n\
+    RemoteIPTrustedProxy 103.31.4.0/22\n\
+    RemoteIPTrustedProxy 141.101.64.0/18\n\
+    RemoteIPTrustedProxy 108.162.192.0/18\n\
+    RemoteIPTrustedProxy 190.93.240.0/20\n\
+    RemoteIPTrustedProxy 188.114.96.0/20\n\
+    RemoteIPTrustedProxy 197.234.240.0/22\n\
+    RemoteIPTrustedProxy 198.41.128.0/17\n\
+    RemoteIPTrustedProxy 162.158.0.0/15\n\
+    RemoteIPTrustedProxy 104.16.0.0/12\n\
+    RemoteIPTrustedProxy 172.64.0.0/13\n\
+    RemoteIPTrustedProxy 131.0.72.0/22\n\
+    RemoteIPTrustedProxy 2400:cb00::/32\n\
+    RemoteIPTrustedProxy 2606:4700::/32\n\
+    RemoteIPTrustedProxy 2803:f800::/32\n\
+    RemoteIPTrustedProxy 2405:b500::/32\n\
+    RemoteIPTrustedProxy 2405:8100::/32\n\
+    RemoteIPTrustedProxy 2a06:98c0::/29\n\
+    RemoteIPTrustedProxy 2c0f:f248::/32\n\
+    \n\
+    <IfModule log_config_module>\n\
+        LogFormat "%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined\n\
+        LogFormat "%a %l %u %t \"%r\" %>s %b" common\n\
+        \n\
+        <IfModule logio_module>\n\
+            LogFormat "%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio\n\
+        </IfModule>\n\
+    </IfModule>\n\
+</IfModule>\n'\
+    >> /opt/bitnami/apache/conf/remoteip.conf
+
+RUN echo 'Include "/opt/bitnami/apache/conf/remoteip.conf"\n' >> /opt/bitnami/apache/conf/httpd.conf
+
+
+#### pagespeed
+#https://github.com/bitnami/bitnami-docker-apache/issues/101#issuecomment-638688639
+#https://github.com/apache/incubator-pagespeed-mod/issues/596#issuecomment-90120790
+#https://community.bitnami.com/t/mod-pagespeed-running-but-not-working-no-permission-to-rewrite-errors/76650/2
+
+RUN sed -i \
+    -e 's/^#\(Include .*pagespeed\)/\1/' \
+    /opt/bitnami/apache/conf/httpd.conf; \
+    \
+    echo '<IfModule pagespeed_module>\n\
     ModPagespeedMemcachedServers memcached:11211\n\
-    ModPagespeedEnableFilters insert_ga\n\
+    ModPagespeedCreateSharedMemoryMetadataCache "/opt/bitnami/apache/var/cache/mod_pagespeed/" 51200\n\
+    ModPagespeedEnableFilters remove_comments,collapse_whitespace,insert_dns_prefetch,insert_ga,inline_google_font_css,move_css_to_head\n\
     ModPagespeedEnableCachePurge on\n\
     ModPagespeedUsePerVhostStatistics on\n\
     \n\
@@ -68,7 +125,8 @@ RUN echo '<IfModule pagespeed_module>\n\
 
 #### h5bp
 
-RUN wget -O /opt/bitnami/apache/conf/extra/h5bp.conf https://raw.githubusercontent.com/h5bp/server-configs-apache/master/dist/.htaccess; \
+RUN wget -O /opt/bitnami/apache/conf/h5bp.conf https://raw.githubusercontent.com/h5bp/server-configs-apache/master/dist/.htaccess; \
+    \
     #https://unix.stackexchange.com/a/77278/81288
     #https://stackoverflow.com/a/54177138/3929620
     echo '<IfModule mod_rewrite.c>\n\
@@ -76,7 +134,7 @@ RUN wget -O /opt/bitnami/apache/conf/extra/h5bp.conf https://raw.githubuserconte
     RewriteCond %{REQUEST_FILENAME} !-f\n\
     RewriteRule ^(.+)\.(\w+)\.(avifs?|bmp|css|cur|gif|ico|jpe?g|m?js|a?png|svgz?|webp|webmanifest)$ $1.$3 [L]\n\
 </IfModule>\n'\
-    >> /opt/bitnami/apache/conf/extra/h5bp.conf
+    >> /opt/bitnami/apache/conf/h5bp.conf
 
 
 # Revert to the original non-root user

@@ -113,7 +113,9 @@ RUN echo 'Include "/opt/bitnami/apache/conf/remoteip.conf"\n' >> /opt/bitnami/ap
 #https://github.com/bitnami/bitnami-docker-apache/issues/101#issuecomment-638688639
 #https://github.com/apache/incubator-pagespeed-mod/issues/596#issuecomment-90120790
 #https://community.bitnami.com/t/mod-pagespeed-running-but-not-working-no-permission-to-rewrite-errors/76650/2
-# PassThrough which will disable all filters so you add back just the ones you want
+
+#FIXME - No permission to rewrite 'https://www.google.com/jsapi
+# ModPagespeedRewriteLevel PassThrough - will disable all filters so you add back just the ones you want
 
 RUN sed -i \
     -e 's/^#\(Include .*pagespeed\)/\1/' \
@@ -122,8 +124,7 @@ RUN sed -i \
     echo '<IfModule pagespeed_module>\n\
     ModPagespeedMemcachedServers memcached:11211\n\
     ModPagespeedCreateSharedMemoryMetadataCache "/opt/bitnami/apache/var/cache/mod_pagespeed/" 51200\n\
-    ModPagespeedRewriteLevel PassThrough\n\
-    ModPagespeedEnableFilters insert_ga\n\
+    ModPagespeedEnableFilters remove_comments,collapse_whitespace,insert_dns_prefetch,insert_ga,inline_google_font_css,move_css_to_head\n\
     ModPagespeedEnableCachePurge on\n\
     ModPagespeedUsePerVhostStatistics on\n\
     \n\

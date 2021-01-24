@@ -58,9 +58,7 @@ RUN sed -i \
     -e 's/\/var\/log\/modsec_audit\.log/\/opt\/bitnami\/apache\/logs\/modsec_audit\.log/' \
     /opt/bitnami/apache/conf/modsecurity.conf; \
     \
-    touch /opt/bitnami/apache/logs/modsec_audit.log; \
-    chmod go+w /opt/bitnami/apache/logs/modsec_audit.log
-
+    ln -sf /dev/stdout /opt/bitnami/apache/logs/modsec_audit.log
 
 
 #### remoteip

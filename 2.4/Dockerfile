@@ -23,11 +23,7 @@ RUN install_packages \
 
 #https://docs.bitnami.com/bch/apps/wordpress/configuration/enable-modules/
 RUN sed -i \
-    -e 's/^#\(LoadModule .*http2_module\)/\1/' \
-    -e 's/^#\(LoadModule .*remoteip_module\)/\1/' \
     -e 's/^#\(LoadModule .*rewrite_module\)/\1/' \
-    -e 's/^#\(LoadModule .*security3_module\)/\1/' \
-    -e 's/^#\(LoadModule .*unique_id_module\)/\1/' \
     \
     #TODO - https://docs.bitnami.com/bch/apps/wordpress/configuration/enable-modules/
     #- LDAP
@@ -44,16 +40,38 @@ RUN sed -i \
     -e 's/^#\(LoadModule .*setenvif_module\)/\1/' \
     \
     #https://community.bitnami.com/t/unable-to-enable-http-2-support/67229/7
+    -e 's/^#\(LoadModule .*http2_module\)/\1/' \
     -e 's/^\(LoadModule .*mpm_prefork_module\)/#\1/' \
     -e 's/^#\(LoadModule .*mpm_event_module\)/\1/' \
     \
     /opt/bitnami/apache/conf/httpd.conf
 
 
+#### modsecurity
+
+RUN sed -i \
+    -e 's/^#\(LoadModule .*security3_module\)/\1/' \
+    -e 's/^#\(LoadModule .*unique_id_module\)/\1/' \
+    /opt/bitnami/apache/conf/httpd.conf; \
+    \
+    sed -i \
+    -e 's/\/var\/log\/modsec_audit\.log/\/opt\/bitnami\/apache\/logs\/modsec_audit\.log/' \
+    /opt/bitnami/apache/conf/modsecurity.conf; \
+    \
+    touch /opt/bitnami/apache/logs/modsec_audit.log
+
+
+
 #### remoteip
 #https://support.cloudflare.com/hc/en-us/articles/360029696071-Restoring-original-visitor-IPs-Option-2-Installing-mod-remoteip-with-Apache
+#https://community.traefik.io/t/restoring-cloudflare-real-ip-on-traefik/7675
+#https://stackoverflow.com/a/63380213/3929620
 
-RUN echo '<IfModule remoteip_module>\n\
+RUN sed -i \
+    -e 's/^#\(LoadModule .*remoteip_module\)/\1/' \
+    /opt/bitnami/apache/conf/httpd.conf; \
+    \
+    echo '<IfModule remoteip_module>\n\
     RemoteIPHeader CF-Connecting-IP\n\
     \n\
     RemoteIPTrustedProxy 173.245.48.0/20\n\

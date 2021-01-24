@@ -43,6 +43,10 @@ RUN sed -i \
     -e 's/^#\(LoadModule .*mime_module\)/\1/' \
     -e 's/^#\(LoadModule .*setenvif_module\)/\1/' \
     \
+    #https://community.bitnami.com/t/unable-to-enable-http-2-support/67229/7
+    -e 's/^\(LoadModule .*mpm_prefork_module\)/#\1/' \
+    -e 's/^#\(LoadModule .*mpm_event_module\)/\1/' \
+    \
     /opt/bitnami/apache/conf/httpd.conf
 
 

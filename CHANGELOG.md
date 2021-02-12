@@ -2,8 +2,31 @@
 
 ### Commits
 
+- Code refactoring [`5909eb5`](https://github.com/frugan-it/docker-bitnami-apache/commit/5909eb5bcfa069e60276d7400b19e2914b0c8d7d)
+- Added mod_pagespeed [`86aa570`](https://github.com/frugan-it/docker-bitnami-apache/commit/86aa57093775d891a2b18cc5ec5551682c24515a)
+- deploy [`5329377`](https://github.com/frugan-it/docker-bitnami-apache/commit/5329377440f42d38791a6487728c983cbb92e38a)
+- Added remoteip_module, security3, unique_id_module [`c6eee1b`](https://github.com/frugan-it/docker-bitnami-apache/commit/c6eee1b0e07bffa127f284a388a5900079a7b8fc)
+- Attempt to fix modsecurity log file [`cbdacdf`](https://github.com/frugan-it/docker-bitnami-apache/commit/cbdacdff3f399e93039e984a1654148531dcf8c8)
+- Added /pagespeed admin page [`0caf812`](https://github.com/frugan-it/docker-bitnami-apache/commit/0caf8127cfc74e11eb2760527eb8c6b69753669e)
+- Added tabs [`bdc5aed`](https://github.com/frugan-it/docker-bitnami-apache/commit/bdc5aed39ab617f8d3c3e708e2a00075e780e1a5)
+- Restored pagespeed filters [`fe7d101`](https://github.com/frugan-it/docker-bitnami-apache/commit/fe7d101644cdad4875f959641e8c1dcd427f96c8)
+- Typo [`1b80908`](https://github.com/frugan-it/docker-bitnami-apache/commit/1b809080fea1a2cc1852ecf365777cc342261942)
+- Added IfModule [`bd16910`](https://github.com/frugan-it/docker-bitnami-apache/commit/bd16910bb97b71a52d0b84f24213d4faa2ac7851)
+- Deploy [`9da62e5`](https://github.com/frugan-it/docker-bitnami-apache/commit/9da62e5a389b462650e1382e3c55c8bdccb34f5a)
+- Updated pagespeed configuration [`45083ca`](https://github.com/frugan-it/docker-bitnami-apache/commit/45083ca44c73b06443609ce782e337e16b3d9709)
+- Updated Dockerfile [`4fbee8a`](https://github.com/frugan-it/docker-bitnami-apache/commit/4fbee8a1b36d1ddc625d5b8a8518397fc29967fe)
 - Updated CHANGELOG [`452050e`](https://github.com/frugan-it/docker-bitnami-apache/commit/452050ee15e6d23528a7441d48df32b072bed0d7)
-- Updated Dockerfile [`543a20f`](https://github.com/frugan-it/docker-bitnami-apache/commit/543a20f1c57304413ffebe772bcb627706dc1efd)
+- Redirect modsec_audit.log to /dev/stdout [`4996e96`](https://github.com/frugan-it/docker-bitnami-apache/commit/4996e967e15cfae962e5dae2588aa81d934e10fc)
+- Added ModPagespeedRewriteLevel PassThrough [`f122ac1`](https://github.com/frugan-it/docker-bitnami-apache/commit/f122ac130a7346204437718e80849980dd17a3fa)
+- Disabled mpm_prefork_module and enabled mpm_event_module https://community.bitnami.com/t/unable-to-enable-http-2-support/67229/7 [`903d2b4`](https://github.com/frugan-it/docker-bitnami-apache/commit/903d2b4f407a13038ae57cde501bee67f47fbfc8)
+- Typo [`85dbcc1`](https://github.com/frugan-it/docker-bitnami-apache/commit/85dbcc129e3388eb371eafd15f7d118756ffe1fc)
+- modsec_audit.log perms [`dc764d1`](https://github.com/frugan-it/docker-bitnami-apache/commit/dc764d13c326af69afdc55f40ccaf85e7d239940)
+- Updated pagespeed require group [`9c10a6f`](https://github.com/frugan-it/docker-bitnami-apache/commit/9c10a6f522ef40df4079e70a8acd41a12db8b725)
+- Typo [`5bd05ca`](https://github.com/frugan-it/docker-bitnami-apache/commit/5bd05ca842d0b089ea7a2701992a6ddbe18cb2d4)
+- Typo [`4951148`](https://github.com/frugan-it/docker-bitnami-apache/commit/4951148007cfddb7da7b21570f930f46b292a6cc)
+- Updated README [`2eb0017`](https://github.com/frugan-it/docker-bitnami-apache/commit/2eb00178c208871d66fced08ba704ccddb465fe4)
+- deploy [`2e57daf`](https://github.com/frugan-it/docker-bitnami-apache/commit/2e57daf0b9b66d9c00d6f4165bfa2a9ea0941852)
+- Attempt to use only insert_ga filter [`766ed8f`](https://github.com/frugan-it/docker-bitnami-apache/commit/766ed8f6c4e34645e4b179c8f1f073cb03e0c190)
 - Merge tag 'v1.1.0' into develop [`33a7c06`](https://github.com/frugan-it/docker-bitnami-apache/commit/33a7c06921291aceb5486327e30049990c09b98d)
 
 ## [v1.1.0](https://github.com/frugan-it/docker-bitnami-apache/compare/v1.0.0...v1.1.0) - 2020-02-05

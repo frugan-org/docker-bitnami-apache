@@ -140,7 +140,7 @@ RUN sed -i \
             AuthGroupFile /app/conf/.htgroup\n\
         </IfModule>\n\
         <Limit GET POST>\n\
-            require valid-user\n\
+            require group admin\n\
         </Limit>\n\
     </Location>\n\
 </IfModule>\n'\

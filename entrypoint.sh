@@ -2,10 +2,9 @@
 
 # shellcheck disable=SC1091
 
-set -e
-#set -o errexit
-#set -o nounset
-#set -o pipefail
+set -o errexit
+set -o nounset
+set -o pipefail
 #set -o xtrace # Uncomment this line for debugging purpose
 
 #https://github.com/docker-library/php/issues/389
@@ -112,6 +111,4 @@ wget -O /opt/bitnami/apache/conf/h5bp.conf https://raw.githubusercontent.com/h5b
 ####
 
 #https://stackoverflow.com/a/46433245/3929620
-bash /opt/bitnami/scripts/apache/entrypoint.sh
-
-exec "$@"
+. /opt/bitnami/scripts/apache/entrypoint.sh

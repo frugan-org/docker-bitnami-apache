@@ -7,7 +7,7 @@ USER 0
 RUN install_packages \
         gcc \
         git \
-        https://stackoverflow.com/a/50072645/3929620
+        #https://stackoverflow.com/a/50072645/3929620
         libc6-dev \
         vim \
         wget \

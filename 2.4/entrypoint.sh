@@ -34,12 +34,13 @@ if [ ! -z "${APACHE_LDAP_MODULE_ENABLED:-}" ]; then
     /opt/bitnami/apache/conf/httpd.conf;
 fi
 if [ ! -z "${APACHE_EVASIVE_MODULE_ENABLED:-}" ]; then
-  git clone https://github.com/jzdziarski/mod_evasive/;
-
-  cd mod_evasive;
-  cp mod_evasive{20,24}.c;
-  sed s/remote_ip/client_ip/g -i mod_evasive24.c;
-  apxs -i -a -c mod_evasive24.c;
+  sed -i \
+    -e 's/^#\(LoadModule .*evasive20_module\)/\1/' \
+    /opt/bitnami/apache/conf/httpd.conf;
+else
+  sed -i \
+    -e 's/^\(LoadModule .*evasive20_module\)/#\1/' \
+    /opt/bitnami/apache/conf/httpd.conf;
 fi
 
 # W3TC -> Page Cache and Browser Cache

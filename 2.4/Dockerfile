@@ -17,8 +17,7 @@ RUN install_packages \
 #### mod_evasive
 #https://docs.bitnami.com/bch/apps/wordpress/configuration/enable-modules/
 
-RUN set -ex; \
-    cd /tmp; \
+RUN cd /tmp; \
     git clone https://github.com/jzdziarski/mod_evasive/; \
     cd mod_evasive; \
     cp mod_evasive{20,24}.c; \

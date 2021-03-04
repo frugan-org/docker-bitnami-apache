@@ -5,6 +5,8 @@ FROM bitnami/apache:%%TAG%%
 USER 0
 
 RUN install_packages \
+        gcc \
+        git \
         vim \
         wget \
     ;

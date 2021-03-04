@@ -5,6 +5,8 @@ FROM bitnami/apache:2.4
 USER 0
 
 RUN install_packages \
+        gcc \
+        git \
         vim \
         wget \
     ;

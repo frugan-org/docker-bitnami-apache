@@ -112,6 +112,6 @@ wget -O /opt/bitnami/apache/conf/h5bp.conf https://raw.githubusercontent.com/h5b
 ####
 
 #https://stackoverflow.com/a/46433245/3929620
-sh /opt/bitnami/scripts/apache/entrypoint.sh
+bash /opt/bitnami/scripts/apache/entrypoint.sh
 
 exec "$@"

@@ -34,7 +34,13 @@ if [ ! -z "${APACHE_LDAP_MODULE_ENABLED:-}" ]; then
     /opt/bitnami/apache/conf/httpd.conf;
 fi
 if [ ! -z "${APACHE_EVASIVE_MODULE_ENABLED:-}" ]; then
-  echo 'LoadModule evasive20_module modules/mod_evasive24.so' >> /opt/bitnami/apache/conf/httpd.conf;
+  sed -i \
+    -e 's/^#\(LoadModule .*evasive20_module\)/\1/' \
+    /opt/bitnami/apache/conf/httpd.conf;
+else
+  sed -i \
+    -e 's/^\(LoadModule .*evasive20_module\)/#\1/' \
+    /opt/bitnami/apache/conf/httpd.conf;
 fi
 
 # W3TC -> Page Cache and Browser Cache

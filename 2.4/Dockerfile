@@ -17,12 +17,15 @@ RUN install_packages \
 #### mod_evasive
 #https://docs.bitnami.com/bch/apps/wordpress/configuration/enable-modules/
 
-RUN cd /tmp; \
+RUN set -ex; \
+    cd /tmp; \
     git clone https://github.com/jzdziarski/mod_evasive/; \
     cd mod_evasive; \
-    cp mod_evasive{20,24}.c; \
+    cp mod_evasive20.c mod_evasive24.c; \
     sed s/remote_ip/client_ip/g -i mod_evasive24.c; \
-    apxs -i -a -c mod_evasive24.c;
+    apxs -i -a -c mod_evasive24.c; \
+    cd ..; \
+    rm -Rf mod_evasive;
 
 
 ####

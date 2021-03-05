@@ -22,9 +22,7 @@ RUN cd /tmp; \
     cd mod_evasive; \
     cp mod_evasive{20,24}.c; \
     sed s/remote_ip/client_ip/g -i mod_evasive24.c; \
-    apxs -i -a -c mod_evasive24.c; \
-    cd ..; \
-    rm -Rf mod_evasive;
+    apxs -i -a -c mod_evasive24.c;
 
 
 ####

@@ -14,6 +14,21 @@ RUN install_packages \
     ;
 
 
+#https://github.com/docker-library/php/issues/389
+#https://askubuntu.com/a/147065/543855
+#https://github.com/docker-library/php/issues/97
+#https://itsecureadmin.com/2018/03/running-apache-2-under-ubuntu-16-04-on-docker/
+#https://httpd.apache.org/docs/2.4/mod/core.html#define
+#https://rskuipers.com/entry/different-settings-for-dev-and-live-in-your-htaccess
+#http://jennyandlih.com/using-apaches-ifdefine-dev-and-production-environments
+#https://medium.com/@william.b/setting-dynamic-environmental-variables-in-apache-from-the-os-1d5c1e2e9e6c
+#https://stackoverflow.com/a/39462219
+#https://httpd.apache.org/docs/2.4/expr.html#functions
+RUN if [ "${ENV}" = "develop" ]; then \
+        echo "export APACHE_ARGUMENTS='-D ${ENV}'" >> /opt/bitnami/apache/bin/envvars; \
+    fi
+
+
 #### mod_evasive
 #https://docs.bitnami.com/bch/apps/wordpress/configuration/enable-modules/
 

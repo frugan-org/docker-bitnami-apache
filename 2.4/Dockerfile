@@ -10,7 +10,7 @@ RUN if [ ${USER_ID} -ne 0 ] && [ ${GROUP_ID} -ne 0 ]; then \
         userdel -f daemon; \
         if getent group daemon; then \
             groupdel daemon; \
-        fi \
+        fi; \
         groupadd -g ${GROUP_ID} daemon; \
         useradd -l -u ${USER_ID} -g daemon daemon; \
         install -d -m 0755 -o daemon -g daemon /home/daemon; \

@@ -7,6 +7,17 @@ set -o nounset
 set -o pipefail
 #set -o xtrace # Uncomment this line for debugging purpose
 
+#https://jtreminio.com/blog/running-docker-containers-as-current-host-user/#ok-so-what-actually-works
+if [ ${USER_ID} -ne 0 ] && [ ${GROUP_ID} -ne 0 ]; then
+  userdel -f daemon;
+  if getent group daemon; then
+      groupdel daemon;
+  fi
+  groupadd -g ${GROUP_ID} daemon;
+  useradd -l -u ${USER_ID} -g daemon daemon;
+  install -d -m 0755 -o daemon -g daemon /home/daemon;
+fi
+
 
 #https://docs.bitnami.com/bch/apps/wordpress/configuration/enable-modules/
 if [ ! -z "${APACHE_REWRITE_MODULE_ENABLED:-}" ]; then
@@ -103,8 +114,19 @@ if [ ! -z "${APACHE_PAGESPEED_MODULE_ENABLED:-}" ]; then
     /opt/bitnami/apache/conf/httpd.conf;
 fi
 
-#
+if [ ! -z "${APACHE_AUTOINDEX_MODULE_ENABLED:-}" ]; then
+  sed -i \
+    -e 's/^#\(LoadModule .*alias_module\)/\1/' \
+    -e 's/^#\(LoadModule .*authz_core_module\)/\1/' \
+    -e 's/^#\(LoadModule .*authz_host_module\)/\1/' \
+    -e 's/^#\(LoadModule .*autoindex_module\)/\1/' \
+    -e 's/^#\(Include .*httpd-autoindex\)/\1/' \
+    /opt/bitnami/apache/conf/httpd.conf;
+fi
+
 #https://github.com/BytemarkHosting/docker-webdav
+#https://github.com/uGeek/docker-webdav
+#https://github.com/idelsink/webdav-docker
 if [ ! -z "${APACHE_DAV_MODULE_ENABLED:-}" ]; then
   sed -i \
     -e 's/^#\(LoadModule .*alias_module\)/\1/' \
@@ -116,7 +138,6 @@ if [ ! -z "${APACHE_DAV_MODULE_ENABLED:-}" ]; then
     -e 's/^#\(LoadModule .*dav_module\)/\1/' \
     -e 's/^#\(LoadModule .*dav_fs_module\)/\1/' \
     -e 's/^#\(LoadModule .*setenvif_module\)/\1/' \
-    -e 's/^#\(Include .*httpd-autoindex\)/\1/' \
     /opt/bitnami/apache/conf/httpd.conf;
 fi
 

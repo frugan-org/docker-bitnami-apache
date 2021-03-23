@@ -94,13 +94,29 @@ if [ ! -z "${APACHE_SECURITY3_MODULE_ENABLED:-}" ]; then
   ln -sf /dev/stdout /opt/bitnami/apache/logs/modsec_audit.log;
 fi
 
-
 #https://support.cloudflare.com/hc/en-us/articles/360029696071-Restoring-original-visitor-IPs-Option-2-Installing-mod-remoteip-with-Apache
 #https://community.traefik.io/t/restoring-cloudflare-real-ip-on-traefik/7675
 #https://stackoverflow.com/a/63380213/3929620
 if [ ! -z "${APACHE_PAGESPEED_MODULE_ENABLED:-}" ]; then
   sed -i \
     -e 's/^#\(Include .*pagespeed\)/\1/' \
+    /opt/bitnami/apache/conf/httpd.conf;
+fi
+
+#
+#https://github.com/BytemarkHosting/docker-webdav
+if [ ! -z "${APACHE_DAV_MODULE_ENABLED:-}" ]; then
+  sed -i \
+    -e 's/^#\(LoadModule .*alias_module\)/\1/' \
+    -e 's/^#\(LoadModule .*auth_digest_module\)/\1/' \
+    -e 's/^#\(LoadModule .*authn_core_module\)/\1/' \
+    -e 's/^#\(LoadModule .*authn_file_module\)/\1/' \
+    -e 's/^#\(LoadModule .*authz_core_module\)/\1/' \
+    -e 's/^#\(LoadModule .*authz_user_module\)/\1/' \
+    -e 's/^#\(LoadModule .*dav_module\)/\1/' \
+    -e 's/^#\(LoadModule .*dav_fs_module\)/\1/' \
+    -e 's/^#\(LoadModule .*setenvif_module\)/\1/' \
+    -e 's/^#\(Include .*httpd-autoindex\)/\1/' \
     /opt/bitnami/apache/conf/httpd.conf;
 fi
 

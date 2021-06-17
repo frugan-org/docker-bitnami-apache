@@ -29,6 +29,11 @@ else
     -e 's/^\(LoadModule .*evasive20_module\)/#\1/' \
     /opt/bitnami/apache/conf/httpd.conf;
 fi
+if [ ! -z "${APACHE_SUBSTITUTE_MODULE_ENABLED:-}" ]; then
+  sed -i \
+    -e 's/^#\(LoadModule .*substitute_module\)/\1/' \
+    /opt/bitnami/apache/conf/httpd.conf;
+fi
 
 # W3TC -> Page Cache and Browser Cache
 if [ ! -z "${APACHE_DEFLATE_MODULE_ENABLED:-}" ]; then

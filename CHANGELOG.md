@@ -1,10 +1,11 @@
-## [Unreleased](https://github.com/frugan-it/docker-bitnami-apache/compare/v1.1.0...HEAD)
+## [Unreleased](https://github.com/frugan-it/docker-bitnami-apache/compare/v1.0.0...HEAD)
 
 ### Commits
 
 - Code refactoring [`5909eb5`](https://github.com/frugan-it/docker-bitnami-apache/commit/5909eb5bcfa069e60276d7400b19e2914b0c8d7d)
 - Added entrypoint [`e8def5e`](https://github.com/frugan-it/docker-bitnami-apache/commit/e8def5e612a285709fc17c67f3a597051b3bb041)
 - Added mod_pagespeed [`86aa570`](https://github.com/frugan-it/docker-bitnami-apache/commit/86aa57093775d891a2b18cc5ec5551682c24515a)
+- Moved repo again to github [`8ca1c51`](https://github.com/frugan-it/docker-bitnami-apache/commit/8ca1c513b924e1ecbb5644c75de8f16e1755c17c)
 - Moved export APACHE_ARGUMENTS to Dockerfile [`9d13908`](https://github.com/frugan-it/docker-bitnami-apache/commit/9d139087df7fef8f5f36fcbeb393ef3adbeac56b)
 - deploy [`5329377`](https://github.com/frugan-it/docker-bitnami-apache/commit/5329377440f42d38791a6487728c983cbb92e38a)
 - Added remoteip_module, security3, unique_id_module [`c6eee1b`](https://github.com/frugan-it/docker-bitnami-apache/commit/c6eee1b0e07bffa127f284a388a5900079a7b8fc)
@@ -18,11 +19,13 @@
 - Updated pagespeed require group [`7f7c872`](https://github.com/frugan-it/docker-bitnami-apache/commit/7f7c8723bcb892bb97c9b7d73d601f481099f2f2)
 - Attempt to update entrypoint [`06e9af7`](https://github.com/frugan-it/docker-bitnami-apache/commit/06e9af7aabf0df2bac27af5562cf8217e69712c1)
 - Added tabs [`bdc5aed`](https://github.com/frugan-it/docker-bitnami-apache/commit/bdc5aed39ab617f8d3c3e708e2a00075e780e1a5)
+- Added substitute_module [`395e11d`](https://github.com/frugan-it/docker-bitnami-apache/commit/395e11db50bb32970dea4b9e14aa121debddbc86)
 - Fixed mod_evasive build [`c0e89f3`](https://github.com/frugan-it/docker-bitnami-apache/commit/c0e89f3fe72a5240f07ecab1d8b348a3277fe508)
+- Updated README [`b5df917`](https://github.com/frugan-it/docker-bitnami-apache/commit/b5df9172c3b46ca7dd768702b2cd6c9f179be223)
 - Typo [`5ea0b45`](https://github.com/frugan-it/docker-bitnami-apache/commit/5ea0b45e28c4f986e3ead64d2b6560ead2866857)
 - Fixed mod_evasive [`b7c131e`](https://github.com/frugan-it/docker-bitnami-apache/commit/b7c131e48e84dcfdc817520cd570de651e73fd34)
 - Restored pagespeed filters [`fe7d101`](https://github.com/frugan-it/docker-bitnami-apache/commit/fe7d101644cdad4875f959641e8c1dcd427f96c8)
-- Added substitute_module [`1a3280f`](https://github.com/frugan-it/docker-bitnami-apache/commit/1a3280f9c6e1de110bc15df189fe3ca86a647654)
+- Updated ARG and ENV variables [`92478b8`](https://github.com/frugan-it/docker-bitnami-apache/commit/92478b82d06874261e8873c67790f3ab5f40450d)
 - Typo [`1b80908`](https://github.com/frugan-it/docker-bitnami-apache/commit/1b809080fea1a2cc1852ecf365777cc342261942)
 - Added IfModule [`bd16910`](https://github.com/frugan-it/docker-bitnami-apache/commit/bd16910bb97b71a52d0b84f24213d4faa2ac7851)
 - Deploy [`9da62e5`](https://github.com/frugan-it/docker-bitnami-apache/commit/9da62e5a389b462650e1382e3c55c8bdccb34f5a)
@@ -45,15 +48,9 @@
 - Updated README [`2eb0017`](https://github.com/frugan-it/docker-bitnami-apache/commit/2eb00178c208871d66fced08ba704ccddb465fe4)
 - deploy [`2e57daf`](https://github.com/frugan-it/docker-bitnami-apache/commit/2e57daf0b9b66d9c00d6f4165bfa2a9ea0941852)
 - Attempt to use only insert_ga filter [`766ed8f`](https://github.com/frugan-it/docker-bitnami-apache/commit/766ed8f6c4e34645e4b179c8f1f073cb03e0c190)
+- Update README.md [`3f2a953`](https://github.com/frugan-it/docker-bitnami-apache/commit/3f2a953d057f9cdbc904b8383aab3fe3c891ecc1)
 - Missing APACHE_AUTOINDEX_MODULE_ENABLED [`a91479c`](https://github.com/frugan-it/docker-bitnami-apache/commit/a91479c016b459132a0bc9606a71ee798ef1efd9)
 - Merge tag 'v1.1.0' into develop [`33a7c06`](https://github.com/frugan-it/docker-bitnami-apache/commit/33a7c06921291aceb5486327e30049990c09b98d)
-
-## [v1.1.0](https://github.com/frugan-it/docker-bitnami-apache/compare/v1.0.0...v1.1.0) - 2020-02-05
-
-### Commits
-
-- Updated README [`b5df917`](https://github.com/frugan-it/docker-bitnami-apache/commit/b5df9172c3b46ca7dd768702b2cd6c9f179be223)
-- Updated ARG and ENV variables [`92478b8`](https://github.com/frugan-it/docker-bitnami-apache/commit/92478b82d06874261e8873c67790f3ab5f40450d)
 
 ## v1.0.0 - 2020-01-04
 

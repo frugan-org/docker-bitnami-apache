@@ -1,7 +1,5 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-## :warning: :point_right: REPO MOVED HERE: https://gitlab.com/frugan/docker-bitnami-apache
-
 # Docker Bitnami Apache
 
 Customization of the [Bitnami Apache Docker image](https://github.com/bitnami/bitnami-docker-apache) with integration of:

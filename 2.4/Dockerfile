@@ -64,7 +64,7 @@ COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
 # Revert to the original non-root user
-USER 1000
+USER 1001
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "/opt/bitnami/scripts/apache/run.sh" ]

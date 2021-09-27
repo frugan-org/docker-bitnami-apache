@@ -29,12 +29,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
+        name: Build and push [2.4, latest]
         uses: docker/build-push-action@v2
         with:
           context: ./2.4
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-bitnami-apache:latest,${{ secrets.DOCKERHUB_USERNAME }}/docker-bitnami-apache:2.4
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-bitnami-apache:2.4,${{ secrets.DOCKERHUB_USERNAME }}/docker-bitnami-apache:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
       # Docker Hub Personal Access Tokens cannot be used as they are not supported by the API.

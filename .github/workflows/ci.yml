@@ -37,3 +37,11 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-bitnami-apache:latest,${{ secrets.DOCKERHUB_USERNAME }}/docker-bitnami-apache:2.4
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      -
+        name: Update repo description
+        uses: peter-evans/dockerhub-description@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/docker-bitnami-apache
+          short-description: ${{ github.event.repository.description }}

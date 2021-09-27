@@ -5,6 +5,7 @@
 Customization of the [Bitnami Apache Docker image](https://github.com/bitnami/bitnami-docker-apache) with integration of:
 
 - [H5BP Apache server configs](https://github.com/h5bp/server-configs-apache)
+- [mod_evasive](https://github.com/jzdziarski/mod_evasive)
 
 ### Changelog
 

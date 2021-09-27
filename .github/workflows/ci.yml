@@ -37,6 +37,8 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-bitnami-apache:latest,${{ secrets.DOCKERHUB_USERNAME }}/docker-bitnami-apache:2.4
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      # Docker Hub Personal Access Tokens cannot be used as they are not supported by the API.
+      # Unfortunately, this means that enabling 2FA on Docker Hub will prevent the action from working.
       -
         name: Update repo description
         uses: peter-evans/dockerhub-description@v2

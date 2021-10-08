@@ -76,6 +76,11 @@ if [ ! -z "${APACHE_SETENVIF_MODULE_ENABLED:-}" ]; then
     -e 's/^#\(LoadModule .*setenvif_module\)/\1/' \
     /opt/bitnami/apache/conf/httpd.conf;
 fi
+if [ ! -z "${APACHE_REMOTEIP_MODULE_ENABLED:-}" ]; then
+  sed -i \
+    -e 's/^#\(LoadModule .*remoteip_module\)/\1/' \
+    /opt/bitnami/apache/conf/httpd.conf;
+fi
 
 #https://community.bitnami.com/t/unable-to-enable-http-2-support/67229/7
 if [ ! -z "${APACHE_HTTP2_MODULE_ENABLED:-}" ]; then

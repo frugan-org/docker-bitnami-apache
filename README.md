@@ -2,7 +2,7 @@
 
 # Docker Bitnami Apache
 
-Customization of the [Bitnami Apache Docker image](https://github.com/bitnami/bitnami-docker-apache) with integration of:
+Customization of the [Bitnami Apache Docker image](https://github.com/bitnami/containers/tree/main/bitnami/apache) with integration of:
 
 - [H5BP Apache server configs](https://github.com/h5bp/server-configs-apache)
 - [mod_evasive](https://github.com/jzdziarski/mod_evasive)
@@ -32,5 +32,5 @@ https://github.com/KristinitaTest/KristinitaTest.github.io/blob/master/donate/Bi
 
 ### License
 
-(ɔ) Copyleft 2021 [Frugan](https://about.me/frugan)
+(ɔ) Copyleft 2023 [Frugan](https://frugan.it)
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/), see [COPYING](COPYING) file.

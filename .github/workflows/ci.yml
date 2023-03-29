@@ -16,7 +16,7 @@ jobs:
       # and will result in the following context: https://github.com/<owner>/<repo>.git#<ref>.
       -
         name: Checkout
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v3.5.0
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push [2.4, latest]
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: ./2.4
           push: true

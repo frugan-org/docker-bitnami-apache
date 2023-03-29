@@ -6,6 +6,7 @@ Customization of the [Bitnami Apache Docker image](https://github.com/bitnami/co
 
 - [H5BP Apache server configs](https://github.com/h5bp/server-configs-apache)
 - [mod_evasive](https://github.com/jzdziarski/mod_evasive)
+- [tarampampam error pages](https://github.com/tarampampam/error-pages)
 
 ### Changelog
 

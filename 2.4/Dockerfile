@@ -42,6 +42,10 @@ RUN if [ "${ENV}" = "develop" ]; then \
     fi
 
 
+### error-pages
+COPY --from=tarampampam/error-pages /opt/html /opt/bitnami/apache/error-pages
+
+
 #### mod_evasive
 #https://docs.bitnami.com/bch/apps/wordpress/configuration/enable-modules/
 

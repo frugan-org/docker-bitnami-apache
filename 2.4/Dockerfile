@@ -27,6 +27,9 @@ RUN install_packages \
     ;
 
 
+#https://vsupalov.com/docker-arg-vs-env/
+ENV ENV=production
+
 #https://github.com/docker-library/php/issues/389
 #https://askubuntu.com/a/147065/543855
 #https://github.com/docker-library/php/issues/97
@@ -37,7 +40,7 @@ RUN install_packages \
 #https://medium.com/@william.b/setting-dynamic-environmental-variables-in-apache-from-the-os-1d5c1e2e9e6c
 #https://stackoverflow.com/a/39462219
 #https://httpd.apache.org/docs/2.4/expr.html#functions
-RUN if [ "${ENV}" = "develop" ]; then \
+RUN if [ "${ENV}" != "production" ]; then \
         echo "export APACHE_ARGUMENTS='-D ${ENV}'" >> /opt/bitnami/apache/bin/envvars; \
     fi
 

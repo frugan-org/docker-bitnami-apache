@@ -6,13 +6,13 @@ USER 0
 
 
 #https://jtreminio.com/blog/running-docker-containers-as-current-host-user/#ok-so-what-actually-works
-RUN if [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
+RUN if [ "${USER_ID:-0}" -ne 0 ] && [ "${GROUP_ID:-0}" -ne 0 ]; then \
         userdel -f daemon; \
         if getent group daemon; then \
             groupdel daemon; \
         fi; \
-        groupadd -g ${GROUP_ID} daemon; \
-        useradd -l -u ${USER_ID} -g daemon daemon; \
+        groupadd -g "${GROUP_ID}" daemon; \
+        useradd -l -u "${USER_ID}" -g daemon daemon; \
         install -d -m 0755 -o daemon -g daemon /home/daemon; \
     fi
 
@@ -28,7 +28,7 @@ RUN install_packages \
 
 
 #https://vsupalov.com/docker-arg-vs-env/
-ENV ENV=production
+ENV APP_ENV=production
 
 #https://github.com/docker-library/php/issues/389
 #https://askubuntu.com/a/147065/543855
@@ -40,8 +40,8 @@ ENV ENV=production
 #https://medium.com/@william.b/setting-dynamic-environmental-variables-in-apache-from-the-os-1d5c1e2e9e6c
 #https://stackoverflow.com/a/39462219
 #https://httpd.apache.org/docs/2.4/expr.html#functions
-RUN if [ "${ENV}" != "production" ]; then \
-        echo "export APACHE_ARGUMENTS='-D ${ENV}'" >> /opt/bitnami/apache/bin/envvars; \
+RUN if [ "${APP_ENV}" != "production" ]; then \
+        echo "export APACHE_ARGUMENTS='-D ${APP_ENV}'" >> /opt/bitnami/apache/bin/envvars; \
     fi
 
 

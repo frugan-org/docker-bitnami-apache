@@ -10,7 +10,10 @@ Customization of the [Bitnami Apache Docker image](https://github.com/bitnami/co
 
 ### Contributing
 
-For your contributions please use the [git-flow workflow](https://danielkummer.github.io/git-flow-cheatsheet/) and [conventional commits](https://www.conventionalcommits.org).
+For your contributions please use:
+
+- [git-flow workflow](https://danielkummer.github.io/git-flow-cheatsheet/)
+- [conventional commits](https://www.conventionalcommits.org)
 
 ### Changelog
 

@@ -28,7 +28,8 @@ RUN install_packages \
 
 
 #https://vsupalov.com/docker-arg-vs-env/
-ENV APP_ENV=production
+ARG APP_ENV=production
+ENV APP_ENV=${APP_ENV}
 
 #https://github.com/docker-library/php/issues/389
 #https://askubuntu.com/a/147065/543855

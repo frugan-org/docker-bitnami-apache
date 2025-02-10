@@ -145,7 +145,9 @@ FALLBACK_DIR="${APACHE_H5BP_FALLBACK_DIR:-/app/conf/$REPO_NAME}"
 FILE_SRC="dist/.htaccess"
 FILE_DEST="/opt/bitnami/apache/conf/h5bp.conf"
 
+#https://stackoverflow.com/a/2717395/3929620
 if wget -q -O "$FILE_DEST" "$REPO_RAW_URL/$FILE_SRC"; then
+	echo "cloning into $FALLBACK_DIR"
 	if [ -d "$FALLBACK_DIR" ]; then
 		cd "$FALLBACK_DIR"
 		git pull >/dev/null 2>&1 || true

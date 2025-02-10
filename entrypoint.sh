@@ -142,20 +142,21 @@ REPO_NAME="h5bp/server-configs-apache"
 REPO_URL="https://github.com/$REPO_NAME.git"
 REPO_RAW_URL="https://raw.githubusercontent.com/$REPO_NAME/master"
 FALLBACK_DIR="${APACHE_H5BP_FALLBACK_DIR:-/app/conf/$REPO_NAME}"
-FILE_SRC="dist/.htaccess"
-FILE_DEST="/opt/bitnami/apache/conf/h5bp.conf"
+SRC_FILE="dist/.htaccess"
+DEST_FILE="/opt/bitnami/apache/conf/h5bp.conf"
 
 #https://stackoverflow.com/a/2717395/3929620
-if ! wget -q -O "$FILE_DEST" "$REPO_RAW_URL/$FILE_SRC"; then
-	if [ -d "$FALLBACK_DIR" ]; then
+if ! wget -q -O "$DEST_FILE" "$REPO_RAW_URL/$SRC_FILE"; then
+	if [ -d "$FALLBACK_DIR/.git" ]; then
 		cd "$FALLBACK_DIR"
 		git pull >/dev/null 2>&1 || true
 	else
+		#https://stackoverflow.com/a/12569731/3929620
 		git clone "$REPO_URL" "$FALLBACK_DIR" >/dev/null 2>&1 || true
 	fi
 
-	if [ -f "$FALLBACK_DIR/$FILE_SRC" ]; then
-		cp "$FALLBACK_DIR/$FILE_SRC" "$FILE_DEST"
+	if [ -f "$FALLBACK_DIR/$SRC_FILE" ]; then
+		cp "$FALLBACK_DIR/$SRC_FILE" "$DEST_FILE"
 	fi
 fi
 

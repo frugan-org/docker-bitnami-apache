@@ -140,7 +140,7 @@ fi
 #### h5bp
 REPO_NAME="h5bp/server-configs-apache"
 REPO_URL="https://github.com/$REPO_NAME.git"
-REPO_RAW_URL="https://raw.githubusercontent.comxxx/$REPO_NAME/master"
+REPO_RAW_URL="https://raw.githubusercontent.com/$REPO_NAME/master"
 FALLBACK_DIR="${APACHE_H5BP_FALLBACK_DIR:-/app/conf/$REPO_NAME}"
 FILE_SRC="dist/.htaccess"
 FILE_DEST="/opt/bitnami/apache/conf/h5bp.conf"

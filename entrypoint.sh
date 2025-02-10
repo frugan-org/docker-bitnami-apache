@@ -138,8 +138,25 @@ if [ -n "${APACHE_DAV_MODULE_ENABLED:-}" ]; then
 fi
 
 #### h5bp
+REPO_NAME="h5bp/server-configs-apache"
+REPO_URL="https://github.com/$REPO_NAME.git"
+REPO_RAW_URL="https://raw.githubusercontent.com/$REPO_NAME/master"
+TMP_DIR="/tmp/server-configs-apache"
+FILE_SRC="dist/.htaccess"
+FILE_DEST="/opt/bitnami/apache/conf/h5bp.conf"
 
-#wget -O /opt/bitnami/apache/conf/h5bp.conf https://raw.githubusercontent.com/h5bp/server-configs-apache/master/dist/.htaccess
+if ! wget -q -O "$FILE_DEST" "$REPO_RAW_URL/$FILE_SRC"; then
+	if [ -d "$TMP_DIR" ]; then
+		cd "$TMP_DIR"
+		git pull >/dev/null 2>&1 || true
+	else
+		git clone "$REPO_URL" "$TMP_DIR" >/dev/null 2>&1 || true
+	fi
+
+	if [ -f "$TMP_DIR/$FILE_SRC" ]; then
+		cp "$TMP_DIR/$FILE_SRC" "$FILE_DEST"
+	fi
+fi
 
 ####
 

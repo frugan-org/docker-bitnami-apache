@@ -147,21 +147,16 @@ FILE_DEST="/opt/bitnami/apache/conf/h5bp.conf"
 
 #https://stackoverflow.com/a/2717395/3929620
 if wget -O "$FILE_DEST" "$REPO_RAW_URL/$FILE_SRC"; then
-	echo "testing h5bp"
 	if [ -d "$FALLBACK_DIR" ]; then
-		echo "pulling h5bp"
 		cd "$FALLBACK_DIR"
 		git pull >/dev/null 2>&1 || true
 	else
-		echo "cloning h5bp"
-		git clone "$REPO_URL" "$FALLBACK_DIR" >/dev/null 2>&1 || true
+		git clone "$REPO_URL" "$FALLBACK_DIR"
 	fi
 
 	#if [ -f "$FALLBACK_DIR/$FILE_SRC" ]; then
 	#	cp "$FALLBACK_DIR/$FILE_SRC" "$FILE_DEST"
 	#fi
-else
-	echo "h5bp error"
 fi
 
 ####

@@ -139,7 +139,7 @@ fi
 
 #### h5bp
 
-wget -O /opt/bitnami/apache/conf/h5bp.conf https://raw.githubusercontent.com/h5bp/server-configs-apache/master/dist/.htaccess
+#wget -O /opt/bitnami/apache/conf/h5bp.conf https://raw.githubusercontent.com/h5bp/server-configs-apache/master/dist/.htaccess
 
 ####
 
